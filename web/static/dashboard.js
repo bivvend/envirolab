@@ -180,10 +180,21 @@ document.addEventListener("DOMContentLoaded", () => {
     createChart();
 
     document.getElementById("sensorSelect")
-        .addEventListener("change", event => {
-            selectedSensor = event.target.value;
-            updateDashboard();
+    .addEventListener("change", async event => {
+        selectedSensor = event.target.value;
+
+        await fetch("/api/display", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sensor: selectedSensor
+            })
         });
+
+        updateDashboard();
+    });
 
     updateDashboard();
     setInterval(updateDashboard, 2000);

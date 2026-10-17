@@ -1,6 +1,7 @@
 
 from flask import Flask, jsonify, render_template
 from flask import send_file
+from flask import request
 from logging_data import recorder
 
 app = Flask(__name__)
@@ -9,11 +10,28 @@ app = Flask(__name__)
 get_readings = lambda: {}
 get_history = lambda: []
 clear_history = lambda: None
+set_selected_sensor = lambda name: False
+get_selected_sensor = lambda: "temperature"
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/api/display", methods=["GET", "POST"])
+def display_selection():
+    """Get or change the measurement shown on the LCD."""
+
+    if request.method == "POST":
+        data = request.get_json(silent=True) or {}
+        name = data.get("sensor")
+
+        if not set_selected_sensor(name):
+            return jsonify({"error": "Invalid sensor"}), 400
+
+    return jsonify({
+        "sensor": get_selected_sensor()
+    })
 
 
 @app.route("/api/readings")
