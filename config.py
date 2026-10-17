@@ -3,7 +3,7 @@ from pathlib import Path
 
 # Project settings
 PROJECT_NAME = "EnviroLab"
-MOCK_SENSORS = True
+MOCK_SENSORS = False
 
 # Sensor settings
 SAMPLE_INTERVAL = 5.0       # Seconds between readings
