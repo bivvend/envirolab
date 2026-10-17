@@ -1,0 +1,15 @@
+# EnviroLab application dependencies
+# Install Pimoroni's Enviro+ libraries separately using:
+#   ~/enviroplus-python/install.sh
+# Then install this file into the Pimoroni virtual environment:
+#   ~/.virtualenvs/pimoroni/bin/python -m pip install -r requirements.txt
+
+Flask>=3.0,<4
+Pillow>=10,<13
+
+# Used by the sound sensor (normally installed by Pimoroni's installer).
+numpy>=1.26,<3
+
+# Hardware-specific dependencies (enviroplus, bme280, ltr559, ST7735,
+# smbus2, sounddevice, etc.) are provided by Pimoroni's installation.
+# Chart.js is included locally at web/static/chart.umd.js.
