@@ -16,7 +16,6 @@ import config
 # Initialise real hardware only when needed
 if not config.MOCK_SENSORS:
     from enviroplus.noise import Noise
-
     microphone = Noise()
 
 
@@ -29,18 +28,12 @@ def read():
 
     else:
         # Collect microphone samples over a short period
-        samples = []
+        samples = microphone.get_noise_profile()
 
-        start = time.monotonic()
-
-        while time.monotonic() - start < 0.1:
-            samples.append(microphone.get_noise())
-
-        # Difference between maximum and minimum readings
         sound = max(samples) - min(samples)
 
     return {
-        "sound": round(sound, 2),
+        "sound": round(float(sound), 2),
     }
 
 

@@ -9,13 +9,13 @@ Measures:
 
 import random
 import config
-
+import time
 
 # Initialise real hardware only when needed
 if not config.MOCK_SENSORS:
-    import ltr559
-
-
+    from ltr559 import LTR559
+    sensor = LTR559()
+    time.sleep(0.5)
 def read():
     """Return light and proximity measurements."""
 
@@ -26,8 +26,8 @@ def read():
 
     else:
         # Read the real LTR559 sensor
-        light = ltr559.get_lux()
-        proximity = ltr559.get_proximity()
+        light = sensor.get_lux()
+        proximity = sensor.get_proximity()
 
     return {
         "light": round(light, 2),
@@ -42,3 +42,4 @@ if __name__ == "__main__":
 
     for i in range(5):
         print(read())
+        time.sleep(0.5)
