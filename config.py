@@ -33,3 +33,4 @@ DATA_DIRECTORY = Path(__file__).resolve().parent / "data"
 # LCD settings
 LCD_ENABLED = True
 LCD_UPDATE_INTERVAL = 2.0
+LCD_ROTATION = 270
