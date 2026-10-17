@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EnviroLab</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="{{ url_for('static', filename='chart.umd.js') }}"></script>
+    <script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+</head>
+
+<body>
+
+    <h1>EnviroLab</h1>
+    <p>Live environmental monitoring</p>
+
+    <section>
+        <h2>Live Graph</h2>
+
+        <label for="sensorSelect">Measurement:</label>
+        <select id="sensorSelect"></select>
+
+        <div class="chart-container">
+            <canvas id="sensorChart"></canvas>
+        </div>
+    </section>
+
+    
+    <section>
+        <h2>Experiment Recording</h2>
+
+        <p>
+            Status:
+            <strong id="recordingStatus">Not recording</strong>
+        </p>
+
+        <button id="startButton">Start Recording</button>
+        <button id="stopButton" disabled>Stop Recording</button>
+        <button id="downloadButton" disabled>Download CSV</button>
+
+        <p id="recordingFilename"></p>
+    </section>
+
+
+    <section>
+        <h2>Current Measurements</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Measurement</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody id="readings"></tbody>
+        </table>
+    </section>
+
+</body>
+</html>
