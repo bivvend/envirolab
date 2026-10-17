@@ -31,7 +31,7 @@ if config.LCD_ENABLED and not config.MOCK_SENSORS:
         cs=1,
         dc="GPIO9",
         backlight="GPIO12",
-        rotation=90,
+        rotation=config.LCD_ROTATION,
         spi_speed_hz=10000000
     )
 
